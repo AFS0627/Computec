@@ -1,13 +1,19 @@
 package br.com.loja.Computec.view;
 
-import javax.swing.JFrame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
+
+import br.com.loja.Computec.controller.LoginController;
 
 public class LoginView extends JFrame {
 
@@ -20,6 +26,19 @@ public class LoginView extends JFrame {
 	private JLabel lblSenha;
 
 	public LoginView() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				LoginController lc = new LoginController();
+				if(lc.verificarBancoOnline()) {
+					lblStatus.setText("conectado ao banco de dados");
+					lblStatus.setIcon(new ImageIcon(getClass().getResource("/br/com/loja/Computec/"))));
+				}else {
+					System.out.println("não conectado");
+
+				} 
+			}
+		});
 		initComponents();
 	}
 
