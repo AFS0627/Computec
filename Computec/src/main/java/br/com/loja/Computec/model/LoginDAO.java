@@ -6,16 +6,16 @@ import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
 
-import br.com.loja.Computec.dal.ModuloConexao;
+import br.com.loja.Computec.dal.ConexaoBD;
 
-public class UsuarioModel {
+public class LoginDAO {
 
 	public Connection conexao = null;
 	private PreparedStatement pst = null;
 	private ResultSet rs = null;
 
-	public UsuarioModel() {
-		conexao = ModuloConexao.conector();
+	public LoginDAO() {
+		conexao = ConexaoBD.conector();
 	}
 
 	public String autenticar(String login, String senha) {

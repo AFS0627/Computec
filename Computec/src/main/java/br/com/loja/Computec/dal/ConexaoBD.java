@@ -3,7 +3,7 @@ package br.com.loja.Computec.dal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ModuloConexao {
+public class ConexaoBD {
 public static Connection conector() {
 	Connection conexao = null;
 	String driver = "com.mysql.cj.jdbc.Driver";
