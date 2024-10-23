@@ -34,7 +34,7 @@ public class PrincipalView extends JFrame {
 	}
 
 	public PrincipalView(String user, String perfil) {
-		setTitle("Sistema de Gestão ASSISTEC");
+		setTitle("Sistema de Gestão Computec");
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -98,7 +98,7 @@ public class PrincipalView extends JFrame {
 		menuSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,
-						"Sistema de gestão Assistec - Versão 1.0");
+						"Sistema de gestão Computec - Versão 1.0");
 				
 			}
 		});

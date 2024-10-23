@@ -33,18 +33,17 @@ public class LoginView extends JFrame {
 				LoginController lc = new LoginController();
 				if (lc.verificarBancoOnline()) {
 					lblStatus.setIcon(new javax.swing.ImageIcon(
-							getClass().getResource("/br/com/loja/assistec/icones/dbok.png")));
+							getClass().getResource("/br/com/loja/Computec/icones/dbok.png")));
 				} else {
 					lblStatus.setIcon(new javax.swing.ImageIcon(
-							getClass().getResource("/br/com/loja/assistec/icones/dberror.png")));
+							getClass().getResource("/br/com/loja/Computec/icones/dberror.png")));
 				}
 			}
 		});
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("ASSISTEC - LOGIN");
+		setTitle("Computec - LOGIN");
 
-		// Inicializa todos elementos gráficos
 
 		lblLogin = new JLabel();
 		lblLogin.setBounds(102, 63, 53, 14);
@@ -86,17 +85,14 @@ public class LoginView extends JFrame {
 
 	}
 
-	//Método para clicar no botao e acionar o método autenticar()
 	protected void onClickBtnLogin() throws SQLException{
 		ArrayList<String> autenticado = new ArrayList<>();
 		
-		//Pré-validação
 		if(txtLogin.getText() != null &&
 				!txtLogin.getText().isEmpty() &&
 				String.valueOf(txtSenha.getPassword()) != null &&
 				!String.valueOf(txtSenha.getPassword()).isEmpty()) {
 			LoginController lc = new LoginController();
-			//Chamar o método autenticar e passar os parametros
 			try {
 				autenticado = lc.autenticar(txtLogin.getText(), 
 						new String(txtSenha.getPassword()));

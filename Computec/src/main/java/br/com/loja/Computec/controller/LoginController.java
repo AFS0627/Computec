@@ -11,14 +11,10 @@ public class LoginController {
 	public LoginController() {
 
 	}
-
-	// Método para verificar se o banco está online
 	public Boolean verificarBancoOnline() {
 		LoginDAO dao = new LoginDAO();
 		return dao.bancoOnline();
 	}
-
-	// Método que faz autenticação
 	public ArrayList<String> autenticar(String login, String senha) throws SQLException {
 		ArrayList<String> listaDados = new ArrayList<>();
 		LoginDAO dao = new LoginDAO();
