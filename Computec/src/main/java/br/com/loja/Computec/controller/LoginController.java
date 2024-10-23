@@ -1,37 +1,31 @@
 package br.com.loja.Computec.controller;
 
-import javax.swing.JOptionPane;
-import javax.swing.text.View;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-import br.com.loja.Computec.model.UsuarioModel;
-import br.com.loja.Computec.view.LoginView;
+import br.com.loja.Computec.model.LoginDAO;
+import br.com.loja.Computec.model.Usuario;
 
 public class LoginController {
-private LoginView view;
-private UsuarioModel model;
 
-public LoginController(LoginView view) {
-	this.view = view;
-	this.model = new UsuarioModel();
-	
-	if(model.conexao !=null) {
-		view.lblStatus.setText("conectado ao banco de dados");
-		System.out.println("conectado");
-	}else {
-		System.out.println("não conectado");
+	public LoginController() {
 
 	}
-	this.view.btnLogin.addActionListener(e -> logar());
-}
-public void logar() {
-	String login = view.txtUsuario.getText();
-	String senha = new String(view.txtSenha.getPassword());
-	String perfil = model.autenticar(login, senha);
-	
-	if(perfil != null) {
-		JOptionPane.showMessageDialog(null,  "acesso concedido");
-	}else {
-		JOptionPane.showMessageDialog(null,  "login ou senha incorretos");
+
+	// Método para verificar se o banco está online
+	public Boolean verificarBancoOnline() {
+		LoginDAO dao = new LoginDAO();
+		return dao.bancoOnline();
 	}
-}
+
+	// Método que faz autenticação
+	public ArrayList<String> autenticar(String login, String senha) throws SQLException {
+		ArrayList<String> listaDados = new ArrayList<>();
+		LoginDAO dao = new LoginDAO();
+		Usuario user = dao.autenticar(login, senha);
+		listaDados.add(0, user.getNome());
+		listaDados.add(1, user.getPerfil());
+		return listaDados;
+	}
+
 }
