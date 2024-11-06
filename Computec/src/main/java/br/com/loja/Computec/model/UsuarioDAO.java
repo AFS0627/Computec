@@ -11,16 +11,20 @@ public class UsuarioDAO extends GenericDAO {
 		String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil) VALUES(?,?,?,?,?)";
 		save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil());
 	}
+
 	public void alterar(Usuario usuario) throws SQLException {
 		String update = "UPDATE USUARIOS " + "SET nome = ?, fone = ?, login = ?, senha = ?, perfil = ? "
 				+ "WHERE IDUSER = ?";
 		update(update, usuario.getIduser(), usuario.getNome(), usuario.getFone(), usuario.getLogin(),
 				usuario.getSenha(), usuario.getPerfil());
 	}
+
 	public void excluir(long id) throws SQLException {
 		String delete = "DELETE FROM USUARIOS WHERE IDUSER = ?";
 		delete(delete, id);
 	}
+	
+	// Método para buscar usuários
 	public ArrayList<Usuario> selecionarUsuarios() throws SQLException {
 		ArrayList<Usuario> usuarios = new ArrayList<>();
 		String sql = "SELECT * FROM USUARIOS";
@@ -45,6 +49,8 @@ public class UsuarioDAO extends GenericDAO {
 		
 		return usuarios;
 	}
+	
+	//Método para buscar um usuário
 		public Usuario selecionarUsuario(Long iduser) throws SQLException {
 			Usuario usuario = new Usuario();
 			String sql = "SELECT * FROM USUARIOS WHERE IDUSER = ?";

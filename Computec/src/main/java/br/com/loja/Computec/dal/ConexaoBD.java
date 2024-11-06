@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 
 import java.sql.*;
 
+
 public class ConexaoBD {
 	// São criadas constantes pois as informações são estáticas
 	private static final String URL_MYSQL = "jdbc:mysql://localhost:3306/lojabd";

@@ -3,6 +3,7 @@ package br.com.loja.Computec.view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -82,7 +83,12 @@ public class PrincipalView extends JFrame {
 		JMenuItem menuUsuarios = new JMenuItem("Usuários");
 		menuUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				listarUsuarios();
+				try {
+					listarUsuarios();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		menuCadastro.add(menuUsuarios);
@@ -113,7 +119,7 @@ public class PrincipalView extends JFrame {
 
 	}
 
-	protected void listarUsuarios() {
+	protected void listarUsuarios() throws SQLException {
 		ListarUsuariosView frame = new ListarUsuariosView();
 		frame.setLocationRelativeTo(frame);
 		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

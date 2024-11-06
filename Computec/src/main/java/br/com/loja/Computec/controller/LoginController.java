@@ -9,7 +9,6 @@ import br.com.loja.Computec.model.Usuario;
 public class LoginController {
 
 	public LoginController() {
-
 	}
 	public Boolean verificarBancoOnline() {
 		LoginDAO dao = new LoginDAO();

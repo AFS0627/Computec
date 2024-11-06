@@ -5,8 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class LoginDAO extends GenericDAO{
 	
+	//Método para verificar se o banco esta online
 	public Boolean bancoOnline()  {
 		Connection valor = conectarDAO();
 		if (valor != null){
@@ -20,6 +28,8 @@ public class LoginDAO extends GenericDAO{
 			return false;
 	}
 	
+	
+	// Método para autenticar usuários
 	public Usuario autenticar(String login, String senha) throws SQLException {
 		String sql = "SELECT * FROM USUARIOS WHERE login=? AND senha=?";
 		Usuario usuario = null;

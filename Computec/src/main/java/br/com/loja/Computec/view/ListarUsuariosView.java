@@ -3,15 +3,28 @@ package br.com.loja.Computec.view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import br.com.loja.Computec.controller.UsuarioController;
+import br.com.loja.Computec.model.Usuario;
+import br.com.loja.Computec.model.UsuarioTableModel;
 
 public class ListarUsuariosView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtLocalizar;
+	private JTable tabela;
+	private ArrayList<Usuario> usuariosList;
+//	private ListarUsuariosView listarUsusariosView;
+	private UsuarioTableModel usuarioTableModel;
+//	private TableRowSorter<UsuarioTableModel> rowSorter;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -26,10 +39,13 @@ public class ListarUsuariosView extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public ListarUsuariosView() {
+	public ListarUsuariosView() throws SQLException {
+//		this.listarUsusariosView = this;
+		usuariosList = new ArrayList<>();
+		
+		UsuarioController uc = new UsuarioController();
+		usuariosList = uc.listarUsuarios();
+		
 		setTitle("Listagem de usuários");
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,11 +61,11 @@ public class ListarUsuariosView extends JFrame {
 				cadUser.setVisible(true);
 			}
 		});
-		btnCadastrar.setBounds(10, 38, 117, 23);
+		btnCadastrar.setBounds(10, 11, 117, 23);
 		getContentPane().add(btnCadastrar);
 		
 		txtLocalizar = new JTextField();
-		txtLocalizar.setBounds(139, 39, 252, 20);
+		txtLocalizar.setBounds(139, 12, 252, 20);
 		getContentPane().add(txtLocalizar);
 		txtLocalizar.setColumns(10);
 		
@@ -61,6 +77,15 @@ public class ListarUsuariosView extends JFrame {
 		});
 		btnFechar.setBounds(189, 216, 89, 23);
 		getContentPane().add(btnFechar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 57, 381, 148);
+		getContentPane().add(scrollPane);
+		
+		usuarioTableModel = new UsuarioTableModel(usuariosList);
+		tabela = new JTable();
+		tabela.setModel(usuarioTableModel);
+		scrollPane.setViewportView(tabela);
 
 	}
 }
