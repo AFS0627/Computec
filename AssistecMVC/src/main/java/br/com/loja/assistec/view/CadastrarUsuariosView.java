@@ -33,10 +33,10 @@ public class CadastrarUsuariosView extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         setLocationRelativeTo(null);
-        initComponents();
+        initComponents(usuarioSelecionado);
     }
 
-    private void initComponents() {
+    private void initComponents(Usuario usuarioSelecionado) {
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -65,7 +65,7 @@ public class CadastrarUsuariosView extends JFrame {
         contentPane.add(panelCampos, BorderLayout.CENTER);
 
         JPanel panelBotoes = new JPanel();
-        btnIncluir = new JButton("Incluir");
+        btnIncluir = new JButton(usuarioSelecionado == null ? "Incluir" : "alterar ");
         btnIncluir.setActionCommand("BotaoIncluirAction");
         btnExcluir = new JButton("Excluir");
         btnExcluir.setActionCommand("BotaoExcluirAction");
@@ -118,6 +118,18 @@ public class CadastrarUsuariosView extends JFrame {
     public String getFone() {
         return txtFone.getText();
     }
+
+	public void habilitarBotaoExcluir(boolean b) {
+		btnExcluir.setVisible(b);
+		
+		
+	}
+
+	public Object getPerfilSelecionado() {
+		// TODO Auto-generated method stub
+		return cbPerfil.getSelectedItem();
+
+	}
 
 
 
