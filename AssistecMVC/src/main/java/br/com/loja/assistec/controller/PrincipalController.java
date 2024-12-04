@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.loja.assistec.view.MensagemView;
@@ -38,7 +39,12 @@ public class PrincipalController {
 
 			switch (comando) {
 			case "MenuUsuariosAction":
-				abrirListagemUsuarios();
+				try {
+					abrirListagemUsuarios();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				break;
 			case "MenuSairAction":
 				sairDoSistema();
@@ -64,8 +70,8 @@ public class PrincipalController {
 	}
 
 	// Abre a tela de listagem de usuários
-	private void abrirListagemUsuarios() {
-//		new ListarUsuarioController();
+	private void abrirListagemUsuarios() throws SQLException {
+		new ListarUsuarioController();
 	}
 
 	// Exibe a mensagem de confirmação de saída e fecha o sistema se confirmado
